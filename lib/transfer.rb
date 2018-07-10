@@ -16,8 +16,8 @@ class Transfer
 
   def execute_transaction
     if self.valid? && self.status == "pending"
-      sender.balance += amount
-      receiver.balance -= amount
+      sender.balance -= amount
+      receiver.balance += amount
       self.status = "complete"
     else
       "Transaction rejected. Please check your account balance."
@@ -26,8 +26,8 @@ class Transfer
 
   def reverse_transfer
     if status == "complete"
-      sender.balance -= amount
-      receiver.balance += amount
+      sender.balance += amount
+      receiver.balance -= amount
       self.status = "reversed"
     end
   end
